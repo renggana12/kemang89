@@ -4,7 +4,12 @@ body {
 }
 
 #side-nav {
-  height: 100%;
+  position: sticky !important;
+}
+
+#side-nav.active {
+  display: block !important;
+  position: absolute !important;
 }
 
 .nav-link {

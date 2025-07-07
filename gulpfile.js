@@ -24,7 +24,8 @@ gulp.task('server', function () {
         server: '../kemang89'
     })
     gulp.watch('app/assets/scss/custom.scss', gulp.series('sass'))
-    gulp.watch('index.html').on('change', browserSync.reload)
+    gulp.watch('index.html',).on('change', browserSync.reload)
+    gulp.watch('app/assets/js/*.js',).on('change', browserSync.reload)
 })
 
 gulp.task('sass', function () {
