@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap demo</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="app/assets/css/custom.css">
     <script src="https://kit.fontawesome.com/eba8a19f2e.js" crossorigin="anonymous"></script>
@@ -14,6 +15,7 @@
     
     <div class="container-fluid">
         <div class="row">
+            <!-- start side-nav -->
             <aside class="col-8 min-vh-100 d-none d-md-block col-md-3 col-lg-2 bg-light bg-light  z-1  " id="side-nav"> 
                 <div class="bg-light">
                     <div class="row">
@@ -61,7 +63,9 @@
                     </div>
                 </div>
             </aside>
+            <!-- end side-nav -->
             <div class="col">
+                <!-- start :: navbar -->
                 <nav class="navbar  border-bottom">
                     <div class="container-fluid">
                         <button class="btn btn-outline-primary" id="side-nav-toggler" type="button" >
@@ -77,14 +81,60 @@
                             </ul>
                         </div>
                     </div>
-
                 </nav>
+                <!-- end :: navbar -->
+                <!-- start :: main content -->
                 <div class="container-fluid">
-                    <h1 class="page-title">
-                        Dashboard
-                    </h1>
                     <div class="row">
-                        <div class="col-3">
+                        <h1 class="page-title col-lg-3">
+                            Dashboard
+                        </h1>
+                        <!-- start :: form date range -->
+                        <div class="col">
+                            <form action="">
+                                <div class="py-2 row align-items-center">
+                                    <div class="col-sm-3 my-1 align-items-center d-flex">
+                                        <input type="date" class="form-control" id="dateInputFirst">
+                                        <i class="fa-solid fa-arrow-right mx-2 d-sm-none d-md-block"></i>
+                                    </div>
+                                    <div class="col-sm-3 my-1">
+                                        <input type="date" class="form-control" id="dateInputSecond">
+                                    </div>
+                                    <div class="col my-1">
+                                        <button class="btn btn-primary">Terapkan</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- end :: form date range -->
+                    </div>
+
+                    <div class="row">
+                        <!-- start :: card dashboard -->
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="card mb-3 bg-primary text-white">
+                                <div class="card-body ">
+                                    <div class="row">
+                                        <div class="col-2 pt-lg-2">
+                                            <i class="fa-solid fa-user fs-2 text-white"></i>
+                                        </div>
+                                        <div class="col">
+                                            <h5 class="card-title">
+                                                125
+                                            </h5>
+                                            <h6 class="card-subtitle">
+                                                Total Pengunjung
+                                            </h6>
+                                        </div>
+                                        <a href="https://fontawesome.com/icons/greater-than?f=classic&s=solid" class="col-12 border-top mt-3 pt-3 pb-1 text-white text-decoration-none d-flex justify-content-between align-items-center">
+                                            <p class="card-text mb-0">more info </p>
+                                            <i class="fa-solid fa-greater-than "></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
                             <div class="card bg-primary text-white">
                                 <div class="card-body ">
                                     <div class="row">
@@ -107,8 +157,7 @@
                                 </div>
                             </div>
                         </div>
-                        
-                        <div class="col-3">
+                        <div class="col-6 col-md-4 col-lg-3">
                             <div class="card bg-primary text-white">
                                 <div class="card-body ">
                                     <div class="row">
@@ -131,7 +180,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-3">
+                        <div class="col-6 col-md-4 col-lg-3">
                             <div class="card bg-primary text-white">
                                 <div class="card-body ">
                                     <div class="row">
@@ -154,53 +203,24 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-3">
-                            <div class="card bg-primary text-white">
-                                <div class="card-body ">
-                                    <div class="row">
-                                        <div class="col-2 pt-lg-2">
-                                            <i class="fa-solid fa-user fs-2 text-white"></i>
-                                        </div>
-                                        <div class="col">
-                                            <h5 class="card-title">
-                                                125
-                                            </h5>
-                                            <h6 class="card-subtitle">
-                                                Total Pengunjung
-                                            </h6>
-                                        </div>
-                                        <a href="https://fontawesome.com/icons/greater-than?f=classic&s=solid" class="col-12 border-top mt-3 pt-3 pb-1 text-white text-decoration-none d-flex justify-content-between align-items-center">
-                                            <p class="card-text mb-0">more info </p>
-                                            <i class="fa-solid fa-greater-than "></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+                        <!-- end :: card dashboard -->
+                    </div>
+                    <div class="row">
+                        <div class="col-10">
+                            <canvas id="chart">
+
+                            </canvas>
                         </div>
                     </div>
                 </div>
+                <!-- end :: main content -->    
             </div> 
+
         </div>
     </div>
+
     <script src="app/assets/js/custom.js"></script>
-    <script id="__bs_script__">//<![CDATA[
-  (function() {
-    try {
-      var script = document.createElement('script');
-      if ('async') {
-        script.async = true;
-      }
-      script.src = 'http://HOST:3000/browser-sync/browser-sync-client.js?v=3.0.4'.replace("HOST", location.hostname);      
-      if (document.body) {
-        document.body.appendChild(script);
-      } else if (document.head) {
-        document.head.appendChild(script);
-      }
-    } catch (e) {
-      console.error("Browsersync: could not append script tag", e);
-    }
-  })()
-//]]></script>
+    <script src="app/assets/js/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
   </body>
 </html>
