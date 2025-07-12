@@ -1,7 +1,7 @@
  const ctx = document.getElementById('chart');
 
   new Chart(ctx, {
-    type: 'bar',
+    type: 'line',
     data: {
       labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
       datasets: [{
@@ -13,7 +13,8 @@
     options: {
       scales: {
         y: {
-          beginAtZero: true
+          min: 10,
+        max: 10,
         }
       }
     }

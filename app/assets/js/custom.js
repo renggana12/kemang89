@@ -1,3 +1,4 @@
+
 let width = window.screen.availWidth
     if (width >= 768) {
     $('#side-nav-toggler').prop('disabled', true)
@@ -16,9 +17,9 @@ $("#side-nav-close-btn").on('click', function() {
 $("#side-nav-toggler").on('click', function() {
     let target= $('#side-nav')
     if ($(target).hasClass('active')) {
-        $(target).removeClass('active');
+        $(target).removeClass('active').succer({})
     }else{
-        $(target).addClass('active');
+        $(target).addClass('active')
     }
 })
 
@@ -46,3 +47,4 @@ function addChangeIconDropdown(target) {
         $(target).children('.side-nav-icon').addClass('fa-caret-right');
     }
 }
+

@@ -4,7 +4,9 @@ body {
 }
 
 #side-nav {
-  position: sticky !important;
+  position: sticky;
+  top: 0;
+  height: 100vh;
 }
 
 #side-nav.active {

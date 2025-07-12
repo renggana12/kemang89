@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    
+    <!-- start jquery cdn -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+     
+    <!-- start datatables link -->
+    <link href="https://cdn.datatables.net/v/bs5/dt-2.3.2/datatables.min.css" rel="stylesheet" integrity="sha384-nt2TuLL4RlRQ9x6VTFgp009QD7QLRCYX17dKj9bj51w2jtWUGFMVTveRXfdgrUdx" crossorigin="anonymous">
+    <script src="https://cdn.datatables.net/v/bs5/dt-2.3.2/datatables.min.js" integrity="sha384-rL0MBj9uZEDNQEfrmF51TAYo90+AinpwWp2+duU1VDW/RG7flzbPjbqEI3hlSRUv" crossorigin="anonymous"></script>
+
+    <!-- cutom css -->
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <script src="https://kit.fontawesome.com/eba8a19f2e.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    
+    </head>
+  <body>
+    
+    <div class="container-fluid">
+        <div class="row">
+            <!-- start side-nav -->
+            <aside class="col-8 min-vh-100 d-none d-md-block col-md-3 col-lg-2 bg-light bg-light  z-1  " id="side-nav"> 
+                <div class="bg-light">
+                    <div class="row">
+                        <div class="col-12 d-flex  align-items-center w-100">
+                            <a href="/" class="d-inline fs-1 ps-3 link-dark text-decoration-none" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
+                                Park89
+                            </a>
+                            <button type="button" class="btn btn-close ms-auto me-md-1 me-3 d-md-none" id="side-nav-close-btn" aria-label="Close"></button>
+                        </div>
+                    </div>
+                    <!-- start side-nav menu -->
+                    <ul class="nav nav-pills  flex-sm-column w-100  ">
+                        <li class="nav-item w-100">
+                            <a href="#" class="side-nav-link nav-link  text-primary-emphasis" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Dashboard">
+                                <i class="nav-icon fa-solid fa-house fs-5"></i> <p> Dashboard</p> 
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- end end side-nav menu-->
+                    <div class="nav nav-pills  flex-sm-column flex-row ">
+                        <div class="nav-item w-100">
+                            <button id="a" class="side-nav-link w-100 btn btn-secondary nav-link text-primary-emphasis side-nav-toggle-btn w-100 d-flex align-items-center" title="as" data-target="dropdown1">
+                                <i class="nav-icon fa-regular fa-rectangle-list fs-5"></i> <p class=""> Data Master</p> <i class="side-nav-icon  fa-solid fa-caret-right fs-5 d-flex ms-auto"></i> 
+                            </button>
+                        </div>
+                        
+                        <ul class="nav nav-pills side-nav-dropdown " id="dropdown1">
+                            <li class="nav-item w-100">
+                                <a href="app/page/parking_officer_page.html " class="side-nav-link nav-link text-primary-emphasis" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Dashboard">
+                                     <p> Juru Parkir</p> 
+                                </a>
+                            </li>
+                            <li class="nav-item w-100">
+                                <a href="#" class="side-nav-link  nav-link text-primary-emphasis" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Dashboard">
+                                    <p> Tarif Parkir</p> 
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </aside>
+            <!-- end side-nav -->
+            <div class="col" >
+                <!-- start :: navbar -->
+                <nav class="navbar  border-bottom">
+                    <div class="container-fluid">
+                        <button class="btn btn-outline-primary" id="side-nav-toggler" type="button" >
+                            <i class="fa-solid fa-bars fs-5"></i>
+                        </button>
+                        <div class="dropdown ms-auto">
+                            <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-user"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end" >
+                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li><a class="dropdown-item text-danger" href="#">Logout <i class="fa-solid fa-right-from-bracket"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+                <!-- end :: navbar -->
+                  
+                <!-- start :: main content -->
+                <div class="container-fluid" id="main-container">
+                    
+                    <div class="row">
+                        <h1 class="page-title">
+                            Data Master Juru Parkir
+                        </h1>
+                    </div>
+
+                    <div class="row">
+                        <!-- Start table juru parkir -->
+                        
+                        <div class="card">
+                            <div class="card-body justify-content-end align-content-center d-inline-flex border-bottom">
+                                <button class="btn btn-primary d-inline-flex justify-content-center py-2">
+                                    <i class="fa-solid fa-plus fs-4"></i> <p class="card-text ms-2">Tambah</p>
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-striped" id="table-of-parkir-officer">
+                                    <thead>
+                                        <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">First</th>
+                                        <th scope="col">Last</th>
+                                        <th scope="col">Handle</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                        <th scope="row">1</th>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                        </tr>
+                                        <tr>
+                                        <th scope="row">2</th>
+                                        <td>Jacob</td>
+                                        <td>Thornton</td>
+                                        <td>@fat</td>
+                                        </tr>
+                                        <tr>
+                                        <th scope="row">3</th>
+                                        <td>Larry</td>
+                                        <td>the Bird</td>
+                                        <td>@twitter</td>
+                                        </tr>
+                                    </tbody>
+                                    </table>
+                            </div>
+                        </div>    
+                        <!-- End table juru parkir --> 
+                    </div>
+                    
+                </div>
+                <!-- end :: main content -->   
+            </div> 
+
+        </div>
+    </div>
+
+    <script src="../assets/js/custom.js"></script>
+    <script type="modul" src="../assets/js/datatable.js"></script>
+    <!-- <script src="app/assets//js/_loadmenu.js"></script> -->
+    <!-- <script src="app/assets/js/chart.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+  </body>
+</html>
