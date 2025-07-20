@@ -1,8 +1,35 @@
+$(document).ready(function () {
+    sideNavChecked();
+    typeParkingRate();
+    $(window).resize(function() {
+        location.reload();
+    });
+});
 
-let width = window.screen.availWidth
-    if (width >= 768) {
-    $('#side-nav-toggler').prop('disabled', true)
+$('.typeRates').on('change', function() {
+    typeParkingRate()
+});
+
+
+
+function sideNavChecked() {
+    let width = window.screen.availWidth
+    if (width > 768) {
+        $('#side-nav-toggler').prop('disabled', true)
+    }
 }
+
+function typeParkingRate() {
+    let typeParkingRate = $('.typeRates:checked').val()
+    if (typeParkingRate == "flat") {
+        $('#form-parking-rates-flat').removeClass('d-none')
+        $('#form-parking-rates-progressive').addClass('d-none')
+    }else{
+        $('#form-parking-rates-flat').addClass('d-none')
+        $('#form-parking-rates-progressive').removeClass('d-none')
+    }
+}
+
 $(".side-nav-toggle-btn").on('click', function () {
     let target = ($(this).attr('data-target'));
     addClassDropdownToggle(target);

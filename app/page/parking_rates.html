@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    
+    <!-- start jquery cdn -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+     
+    <!-- start datatables link -->
+    <link href="https://cdn.datatables.net/v/bs5/dt-2.3.2/datatables.min.css" rel="stylesheet" integrity="sha384-nt2TuLL4RlRQ9x6VTFgp009QD7QLRCYX17dKj9bj51w2jtWUGFMVTveRXfdgrUdx" crossorigin="anonymous">
+    <script src="https://cdn.datatables.net/v/bs5/dt-2.3.2/datatables.min.js" integrity="sha384-rL0MBj9uZEDNQEfrmF51TAYo90+AinpwWp2+duU1VDW/RG7flzbPjbqEI3hlSRUv" crossorigin="anonymous"></script>
+
+    <!-- cutom css -->
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <script src="https://kit.fontawesome.com/eba8a19f2e.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    
+    </head>
+  <body>
+    
+    <div class="container-fluid">
+        <div class="row">
+            <!-- start side-nav -->
+            <aside class="col-8 min-vh-100 d-none d-lg-block col-md-4 col-lg-2 bg-light bg-light  z-1  " id="side-nav"> 
+                <div class="bg-light">
+                    <div class="row">
+                        <div class="col-12 d-flex  align-items-center w-100">
+                            <a href="/" class="d-inline fs-1 ps-3 link-dark text-decoration-none" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
+                                Park89
+                            </a>
+                            <button type="button" class="btn btn-close ms-auto me-md-1 me-3 d-lg-none" id="side-nav-close-btn" aria-label="Close"></button>
+                        </div>
+                    </div>
+                    <!-- start side-nav menu -->
+                    <ul class="nav nav-pills  flex-sm-column w-100  ">
+                        <li class="nav-item w-100">
+                            <a href="#" class="side-nav-link nav-link  text-primary-emphasis" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Dashboard">
+                                <i class="nav-icon fa-solid fa-house fs-5"></i> <p> Dashboard</p> 
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- end end side-nav menu-->
+                    <div class="nav nav-pills  flex-sm-column flex-row ">
+                        <div class="nav-item w-100">
+                            <button id="a" class="side-nav-link w-100 btn btn-secondary nav-link text-primary-emphasis side-nav-toggle-btn w-100 d-flex align-items-center" title="as" data-target="dropdown1">
+                                <i class="nav-icon fa-regular fa-rectangle-list fs-5"></i> <p class=""> Data Master</p> <i class="side-nav-icon  fa-solid fa-caret-right fs-5 d-flex ms-auto"></i> 
+                            </button>
+                        </div>
+                        
+                        <ul class="nav nav-pills side-nav-dropdown " id="dropdown1">
+                            <li class="nav-item w-100">
+                                <a href="app/page/parking_officer_page.html " class="side-nav-link nav-link text-primary-emphasis" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Dashboard">
+                                     <p> Juru Parkir</p> 
+                                </a>
+                            </li>
+                            <li class="nav-item w-100">
+                                <a href="parking_rates.html" class="side-nav-link  nav-link text-primary-emphasis" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Dashboard">
+                                    <p> Tarif Parkir</p> 
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </aside>
+            <!-- end side-nav -->
+            <div class="col" >
+                <!-- start :: navbar -->
+                <nav class="navbar  border-bottom">
+                    <div class="container-fluid">
+                        <button class="btn btn-outline-primary" id="side-nav-toggler" type="button" >
+                            <i class="fa-solid fa-bars fs-5"></i>
+                        </button>
+                        <div class="dropdown ms-auto">
+                            <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-user"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end" >
+                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li><a class="dropdown-item text-danger" href="#">Logout <i class="fa-solid fa-right-from-bracket"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+                <!-- end :: navbar -->
+                  
+                <!-- start :: main content -->
+                <div class="container-fluid" id="main-container">
+                    
+                    <div class="row">
+                        <h1 class="page-title">
+                            Data Master Tarif Parkir
+                        </h1>
+                    </div>
+
+                    <div class="row">
+                        <!-- Start table juru parkir -->
+                        <div class="card">
+                            <div class="card-body justify-content-end align-content-center d-inline-flex border-bottom">
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <i class="fa-solid fa-plus"></i> Tambah
+                                </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Data Tarif Parkir</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form>
+                                                    <div class="mb-3">
+                                                        <label for="exampleInputEmail1" class="form-label">Jenis Kendaraan</label>
+                                                        <select class="form-select" aria-label="Default select example" required>
+                                                            <option selected>Pilih Jenis Kendaraan</option>
+                                                            <option value="1">Motor</option>
+                                                            <option value="2">Mobil</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="mb-0">
+                                                        <label for="" class="form-label">Jenis Tarif <span class="text-danger">*</span></label>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input typeRates" type="radio" name="inlineRadioOptions"  value="flat" checked>
+                                                            <label class="form-check-label" for="inlineRadio1">Tarif Flat</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input typeRates" type="radio" name="inlineRadioOptions" value="progressive" >
+                                                            <label class="form-check-label" for="inlineRadio2">Tarif Progressive / Custom</label>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- flat parking rates -->
+                                                    <div id="form-parking-rates-flat" class="d-none">
+                                                        
+                                                        <div class="mb-1">
+                                                            <label for="exampleInputEmail1" class="form-label">Tarif <span class="text-danger">*</span></label>
+                                                        </div>
+                                                        <div class="mb-3 input-group">
+                                                            <label for="" class="input-group-text">Rp.</label>
+                                                            <input type="text" class="form-control" id="parkRate" placeholder="Masukan Tarif" required> 
+                                                        </div>
+                                                    </div>
+                                                    <!-- progressive parking rates -->
+                                                    <div id="form-parking-rates-progressive">
+                                                        
+                                                        <!-- Start :: Grace Period -->
+                                                        <div class="mb-3">
+                                                            <label for="gracePeriod" class="form-label">Grace Period</label>
+                                                            <div class="input-group">    
+                                                                <input type="number" class="form-control" id="gracePeriod" placeholder="Masukan Jumlah Menit">
+                                                                <label for="" class="input-group-text">menit</label>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <!-- Tarif 1 -->
+                                                        <div class="mb-3">
+                                                            <label for="" class="form-label">Tarif 1 <span class="text-danger">*</span></label>
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <div class="input-group">
+                                                                        <label for="" class="input-group-text">Rp.</label>
+                                                                        <input type="number" class="form-control" id="parkirgRatesProgressive1" placeholder="Masukan Tarif" required>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <div class="input-group">
+                                                                        <input type="number" class="form-control" id="parkirgDurationProgressive1" placeholder="Masukan Durasi">
+                                                                        <label for="" class="input-group-text">menit</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Tarif 2 -->
+                                                        <div class="mb-3">
+                                                            <label for="" class="form-label">Tarif 2 </label>
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <div class="input-group">
+                                                                        <label for="" class="input-group-text">Rp.</label>
+                                                                        <input type="number" class="form-control" id="parkirgRatesProgressive2" placeholder="Masukan Tarif" >
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <div class="input-group">
+                                                                        <input type="number" class="form-control" id="parkirgDurationProgressive2" placeholder="Masukan Durasi">
+                                                                        <label for="" class="input-group-text">menit</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Tarif 3 -->
+                                                        <div class="mb-3">
+                                                            <label for="" class="form-label">Tarif 3 </label>
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <div class="input-group">
+                                                                        <label for="" class="input-group-text">Rp.</label>
+                                                                        <input type="number" class="form-control" id="parkirgRatesProgressive3" placeholder="Masukan Tarif" >
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <div class="input-group">
+                                                                        <input type="number" class="form-control" id="parkirgDurationProgressive3" placeholder="Masukan Durasi">
+                                                                        <label for="" class="input-group-text">menit</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Tarif 4 -->
+                                                        <div class="mb-3">
+                                                            <label for="" class="form-label">Tarif 2 </label>
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <div class="input-group">
+                                                                        <label for="" class="input-group-text">Rp.</label>
+                                                                        <input type="number" class="form-control" id="parkirgRatesProgressive4" placeholder="Masukan Tarif" required>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <div class="input-group">
+                                                                        <input type="number" class="form-control" id="parkirgDurationProgressive4" placeholder="Masukan Durasi">
+                                                                        <label for="" class="input-group-text">menit</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Denda Inap -->
+                                                        <div class="mb-3">
+                                                            <label for="ovenightParkingFine" class="form-label">Denda Inap</label>
+                                                            <div class="input-group">
+                                                                <label for="" class="input-group-text">Rp.</label>
+                                                                <input type="text" class="form-control" id="ovenightParkingFine" placeholder="Masukan Tarif">
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <!-- Tarif Maksimal -->
+                                                        <div class="mb-3">
+                                                            <label for="maxParkingRate" class="form-label">Tarif Maximum <span class="text-danger">*</span></label>
+                                                            <div class="input-group">
+                                                                <label for="" class="input-group-text">Rp.</label>
+                                                                <input type="text" class="form-control" id="maxParkingRate" placeholder="Masukan Tarif" required>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <!-- Denda Tiket Hilang -->
+                                                    <div class="mb-3">
+                                                        <label for="fineMissingTikcet" class="form-label">Denda Tiket Hilang <span class="text-danger">*</span></label>
+                                                        <div class="input-group">
+                                                            <label for="" class="input-group-text">Rp.</label>
+                                                            <input type="text" class="form-control" id="fineMissingTicket" placeholder="Masukan Tarif" required>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>          
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Simpan</button>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End :: Modal -->
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <table class=" display nowrap" id="tableParkingOfficer">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">No</th>
+                                                    <th scope="col">Jenis Kendaraan</th>
+                                                    <th scope="col">Grace Period</th>
+                                                    <th scope="col">Denda Inap</th>
+                                                    <th scope="col">Denda Tiket Hilang</th>
+                                                    <th scope="col" >Tarif 1</th>
+                                                    <th scope="col" >Tarif 2</th>
+                                                    <th scope="col" >Tarif 3</th>
+                                                    <th scope="col" >Tarif 4</th>
+                                                    <th scope="col" >Period 1</th>
+                                                    <th scope="col" >Period 2</th>
+                                                    <th scope="col" >Period 3</th>
+                                                    <th scope="col" >Period 4</th>
+                                                    <th scope="col" >Tarif Maksimal</th>
+                                                    <th scope="col" >Jenis Tarif</th>
+                                                </tr>
+                                            </thead>
+                                            <!-- <tbody>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>Kemang 89</td>
+                                                    <td><span class="btn btn-outline-success disabled">Active</span></td>
+                                                    <td>
+                                                        <button class="btn btn-warning text-white"><i class="fa-solid fa-pencil"></i></button>
+                                                        <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2</td>
+                                                    <td>Suparjo Kemang 89</td>
+                                                    <td><span class="btn btn-outline-success disabled">Active</span></td>
+                                                    <td>
+                                                        <button class="btn btn-warning text-white"><i class="fa-solid fa-pencil"></i></button>
+                                                        <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>3   </td>
+                                                    <td>Santoso Kemang 89</td>
+                                                    <td><span class="btn btn-outline-danger disabled">Tidak Aktif</span></td>
+                                                    <td>
+                                                        <button class="btn btn-warning text-white"><i class="fa-solid fa-pencil"></i></button>
+                                                        <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+                                                    </td>
+                                                </tr>
+                                            </tbody> -->
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>    
+                        <!-- End table juru parkir --> 
+                    </div>
+                    
+                </div>
+                <!-- end :: main content -->   
+            </div> 
+
+        </div>
+    </div>
+
+    <script src="/app/assets/js/custom.js"></script>
+    <script type="modul" src="../assets/js/datatable.js"></script>
+    <script>new DataTable('#tableParkingOfficer', {
+                layout: {
+                    bottomEnd: {
+                        paging: {
+                            firstLast: false
+                        }
+                    }
+                },
+                scrollX : true
+            })</script>
+    <!-- <script src="app/assets//js/_loadmenu.js"></script> -->
+    <!-- <script src="app/assets/js/chart.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+  </body>
+</html>
