@@ -21,10 +21,10 @@ var sass = require('gulp-sass')(require('sass'))
 
 gulp.task('server', function () {
     browserSync.init({
-        server: '../kemang89'
+        server: '../kemang89',
     })
     gulp.watch('app/assets/scss/custom.scss', gulp.series('sass'))
-    gulp.watch('index.html',).on('change', browserSync.reload)
+    gulp.watch('app/page/*.html').on('change', browserSync.reload)
     gulp.watch('app/assets/js/*.js',).on('change', browserSync.reload)
 })
 
